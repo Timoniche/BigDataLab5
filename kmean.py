@@ -100,6 +100,8 @@ def main():
     scores = kmeans_clustering(scaled_data)
     plot_silhouette_scores(scores)
 
+    spark.stop()
+
 
 if __name__ == '__main__':
     main()
