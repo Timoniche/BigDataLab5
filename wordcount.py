@@ -32,6 +32,9 @@ def main():
     for word, count in word_counts:
         print(word, count, sep=": ")
 
+    sc.stop()
+    spark.stop()
+
 
 if __name__ == '__main__':
     main()
