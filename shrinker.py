@@ -1,9 +1,13 @@
 import csv
+import pathlib
+
+N_ROWS = 10000
 
 
 def main():
-    input_file = '/Users/timoniche/Documents/BigData/BigDataLab5/en.openfoodfacts.org.products.csv'
-    output_file = '/Users/timoniche/Documents/BigData/BigDataLab5/small.csv'
+    curdir = str(pathlib.Path(__file__).parent)
+    input_file = curdir + '/' + 'en.openfoodfacts.org.products.csv'
+    output_file = curdir + '/' + 'dataset.csv'
 
     with open(input_file, 'r') as f_input:
         with open(output_file, 'w') as f_output:
@@ -13,7 +17,7 @@ def main():
             header = next(csv_input)
             csv_output.writerow(header)
 
-            for _ in range(1000):
+            for _ in range(N_ROWS):
                 try:
                     row = next(csv_input)
                     csv_output.writerow(row)

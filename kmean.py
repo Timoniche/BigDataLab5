@@ -6,6 +6,11 @@ from pyspark.ml.evaluation import ClusteringEvaluator
 from pyspark.ml.feature import VectorAssembler, StandardScaler
 from pyspark.sql import SparkSession
 
+# TODO:
+#  1) добавить параметры (спарк by examples)
+#  2) Вынести все параметры в отдельный конфиг
+#  3) ООП
+
 spark = SparkSession.builder \
     .master("local") \
     .appName("KMean") \
@@ -24,10 +29,14 @@ def load_dataset(dataset_path):
     output_col = 'features'
     vector_assembler = VectorAssembler(
         inputCols=[
-            "product_quantity",
-            "completeness",
-            "energy-kcal_100g",
-            "sugars_100g",
+            'product_quantity',
+            'completeness',
+            'energy-kcal_100g',
+            'sugars_100g',
+            'energy_100g',
+            'fat_100g',
+            'saturated-fat_100g',
+            'carbohydrates_100g',
         ],
         outputCol=output_col,
         handleInvalid='skip',
@@ -92,7 +101,7 @@ def plot_silhouette_scores(scores):
 
 def main():
     curdir = str(pathlib.Path(__file__).parent.resolve())
-    dataset_filename = 'small.csv'
+    dataset_filename = 'dataset.csv'
     dataset_path = curdir + '/' + dataset_filename
 
     assembled_data = load_dataset(dataset_path)
