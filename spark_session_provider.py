@@ -14,6 +14,8 @@ class SparkSessionProvider:
             .config("spark.executor.memory", self.config['spark']['executor.memory']) \
             .config("spark.driver.cores", self.config['spark']['driver.cores']) \
             .config("spark.executor.cores", self.config['spark']['executor.cores']) \
+            .config("spark.driver.host", "127.0.0.1") \
+            .config("spark.driver.bindAddress", "127.0.0.1") \
             .getOrCreate()
 
     def provide_session(self) -> SparkSession:

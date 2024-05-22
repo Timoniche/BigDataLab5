@@ -2,3 +2,5 @@
 .idea
 /dump/
 /en.openfoodfacts.org.products.csv
+/logfile.log
+/silhouette.png

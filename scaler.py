@@ -3,9 +3,14 @@ import configparser
 from pyspark.ml.feature import StandardScaler
 from pyspark.sql import DataFrame
 
+from logger import Logger
+
 
 class Scaler:
     def __init__(self):
+        logger = Logger(show=True)
+        self.log = logger.get_logger(__name__)
+
         self.config = configparser.ConfigParser()
         self.config.read('config.ini')
         input_col = self.config['vectorizer']['vectorizedColumnName']
@@ -22,6 +27,8 @@ class Scaler:
             self,
             dataset: DataFrame,
     ):
+        self.log.info('Scaling started')
+
         scaler_model = self.scaler.fit(dataset)
         scaled_data = scaler_model.transform(dataset)
 
