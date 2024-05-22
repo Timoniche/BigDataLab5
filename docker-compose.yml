@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+  kmean:
+    image: ddulaev/lab5:latest
+    container_name: kmean
+    build:
+      dockerfile: Dockerfile
+    command: bash -c "python main.py"
