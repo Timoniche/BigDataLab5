@@ -1,7 +1,7 @@
 import csv
 import pathlib
 
-N_ROWS = 10000
+N_ROWS = 1000
 
 
 def main():
