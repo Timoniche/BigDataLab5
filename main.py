@@ -1,8 +1,6 @@
 import os
 import sys
 
-import matplotlib.pyplot as plt
-
 from logger import Logger
 
 sys.path.insert(1, os.path.join(os.getcwd(), "src"))
@@ -12,14 +10,6 @@ from kmeans_clustering import KMeansClustering  # noqa: E402
 from scaler import Scaler  # noqa: E402
 from spark_session_provider import SparkSessionProvider  # noqa: E402
 from vectorizer import Vectorizer  # noqa: E402
-
-
-def plot_silhouette_scores(scores, k_search_range):
-    plt.plot(k_search_range, scores)
-    plt.xlabel('k')
-    plt.ylabel('silhouette score')
-    plt.title('Silhouette Score')
-    plt.show()
 
 
 def main():
@@ -42,7 +32,6 @@ def main():
     scaled_dataset.collect()
 
     _ = clusterizer.clusterize(scaled_dataset)
-    # plot_silhouette_scores(scores, clusterizer.k_search_range)
 
     spark.stop()
 
